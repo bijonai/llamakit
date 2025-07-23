@@ -24,5 +24,8 @@
     "dev": "unbuild --stub",
     "prepublishOnly": "nr build",
     "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "openai": "^5.10.2"
   }
 }
