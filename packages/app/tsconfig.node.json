@@ -6,11 +6,11 @@
     "moduleDetection": "force",
     "module": "ESNext",
 
-    /* Bundler mode */
+    // Bundler mode
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
 
-    /* Linting */
+    // Linting
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
