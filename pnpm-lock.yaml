@@ -120,6 +120,8 @@ importers:
         specifier: latest
         version: 2.12.4(@netlify/blobs@9.1.2)
 
+  packages/shared: {}
+
 packages:
 
   '@ampproject/remapping@2.3.0':

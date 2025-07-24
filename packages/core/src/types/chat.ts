@@ -60,55 +60,55 @@ export type ChatResponseFormat = ChatResponseJsonSchemaFormat | ChatResponseJson
 
 export interface ChatRequestBody {
   messages: ChatMessage[]
-  model: string;
-  temperature?: number;
-  top_p?: number;
-  n?: number;
-  stream?: boolean;
-  stop?: string | string[];
-  max_tokens?: number;
-  presence_penalty?: number;
-  frequency_penalty?: number;
-  logit_bias?: Record<string, number>;
-  user?: string;
+  model: string
+  temperature?: number
+  top_p?: number
+  n?: number
+  stream?: boolean
+  stop?: string | string[]
+  max_tokens?: number
+  presence_penalty?: number
+  frequency_penalty?: number
+  logit_bias?: Record<string, number>
+  user?: string
   tools?: Tool[]
   tool_choice?: 'none' | 'auto' | Tool
   response_format?: ChatResponseFormat
-  seed?: number;
+  seed?: number
 }
 
 export type FinishReason = 'stop' | 'length' | 'tool_calls' | 'content_filter' | string
 export interface ChatCompletionChoice {
-  index: number;
-  message: ChatMessage;
-  logprobs: any | null;
-  finish_reason: FinishReason;
+  index: number
+  message: ChatMessage
+  logprobs: any | null
+  finish_reason: FinishReason
 }
 
 export interface PromptTokensDetails {
-  cached_tokens: number;
-  audio_tokens: number;
+  cached_tokens: number
+  audio_tokens: number
 }
 
 export interface CompletionTokensDetails {
-  reasoning_tokens: number;
-  audio_tokens: number;
-  accepted_prediction_tokens: number;
-  rejected_prediction_tokens: number;
+  reasoning_tokens: number
+  audio_tokens: number
+  accepted_prediction_tokens: number
+  rejected_prediction_tokens: number
 }
 
 export interface Usage {
-  prompt_tokens: number;
-  completion_tokens: number;
-  total_tokens: number;
-  prompt_tokens_details: PromptTokensDetails;
-  completion_tokens_details: CompletionTokensDetails;
+  prompt_tokens: number
+  completion_tokens: number
+  total_tokens: number
+  prompt_tokens_details: PromptTokensDetails
+  completion_tokens_details: CompletionTokensDetails
 }
 
 export interface ChatCompletionResponse {
-  id: string;
-  created: Date;
-  model: string;
-  choices: ChatCompletionChoice[];
-  usage: Usage;
+  id: string
+  created: Date
+  model: string
+  choices: ChatCompletionChoice[]
+  usage: Usage
 }
