@@ -1,5 +1,5 @@
 {
-  "private": true,
+  "name": "@llamakit/server",
   "scripts": {
     "build": "nitro build",
     "dev": "nitro dev",
