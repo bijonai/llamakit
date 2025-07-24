@@ -16,13 +16,24 @@
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
+  "bin": {
+    "llamakit": "./src/index.js"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "prepublishOnly": "nr build",
     "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "clerc": "^0.44.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "unbuild": "^2.0.0"
   }
 }
