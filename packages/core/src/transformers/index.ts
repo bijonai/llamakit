@@ -8,6 +8,7 @@ export function createTransform<T extends object, R extends object, K extends ob
 ): (
   body: T,
   resolver?: (body: T) => K,
+  after?: (body: R, o: K, params: object) => K,
 ) => [
   K,
   (response: R, params: object) => K,
@@ -15,11 +16,13 @@ export function createTransform<T extends object, R extends object, K extends ob
   return (
     body: T,
     resolver: (body: T) => K = (body) => body as unknown as K,
-    after: (body: R, params: object) => K = (body) => body as unknown as K,
+    after: (body: R, o: K, params: object) => K = (body, o) => o,
   ) => {
     return [
       resolver(body),
-      after,
+      (response, params) => after(response, resolver(body), params),
     ]
   }
 }
+
+export * from './chat'

@@ -37,8 +37,16 @@ export function createChatTransformer(options: TransformerOptions) {
         inputs: req.messages,
       }
     },
-    (res) => {
-      return {}
+    (res, o, params: object) => {
+      const timestamp = (params as { timestamp: Date }).timestamp
+      return {
+        ...o,
+        status: LogStatus.SUCCESS,
+        lastAt: timestamp,
+        timeUsage: o.status === LogStatus.RUNNING || o.status === LogStatus.PENDING ? timestamp.getTime() - o.startAt.getTime() : 0,
+        outputs: res.choices?.map(choice => choice.message) || [],
+        usage: res.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }
+      }
     }
   )
 }
