@@ -4,7 +4,7 @@ export default defineNitroConfig({
   compatibilityDate: '2025-07-25',
   storage: {
     redis: {
-      driver: 'memory', // 开发环境使用内存存储，生产环境可以配置为redis等
+      driver: 'memory',
     },
   },
   experimental: {
