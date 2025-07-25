@@ -35,7 +35,7 @@ export default defineEventHandler(async (event): Promise<ChatCompletionResponse>
     const [result, resolve] = transformer(body, { timestamp: startTimestamp })
 
     // 生成唯一的日志ID
-    const logId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+    const logId = `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`
 
     // 将初始结果写入本地KV Storage
     const logs = await storage.getItem<any[]>(`client:${clientId}:logs`) || []

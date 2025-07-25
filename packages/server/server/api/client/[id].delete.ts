@@ -1,7 +1,4 @@
-interface RemoveClientResponse {
-  success: boolean
-  message: string
-}
+import type { RemoveClientResponse } from '../../types/api'
 
 export default defineEventHandler(async (event): Promise<RemoveClientResponse> => {
   const clientId = getRouterParam(event, 'id')

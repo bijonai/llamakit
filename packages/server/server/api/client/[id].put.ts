@@ -1,23 +1,4 @@
-interface ClientData {
-  id: string
-  apiKey: string
-  baseUrl: string
-  name: string
-  createdAt: string
-  updatedAt?: string
-}
-
-interface UpdateClientBody {
-  name?: string
-  baseUrl?: string
-  apiKey?: string
-}
-
-interface UpdateClientResponse {
-  success: boolean
-  message: string
-  client: ClientData
-}
+import type { ClientData, UpdateClientBody, UpdateClientResponse } from '../../types/api'
 
 export default defineEventHandler(async (event): Promise<UpdateClientResponse> => {
   const clientId = getRouterParam(event, 'id')
