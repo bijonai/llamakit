@@ -6,6 +6,9 @@
     "prepare": "nitro prepare",
     "preview": "node .output/server/index.mjs"
   },
+  "dependencies": {
+    "@llamakit/core": "workspace:*"
+  },
   "devDependencies": {
     "nitropack": "latest"
   }
