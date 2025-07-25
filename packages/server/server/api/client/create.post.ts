@@ -50,7 +50,9 @@ export default defineEventHandler(async (event): Promise<CreateClientResponse> =
   }
   catch {
     // 清理可能已创建的数据
-    await storage.removeItem(`client:${clientId}`).catch(() => {})
+    await storage.removeItem(`client:${clientId}`).catch((error) => {
+      console.error(`Failed to clean up client data for ID ${clientId}:`, error)
+    })
 
     throw createError({
       statusCode: 500,
