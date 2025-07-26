@@ -44,6 +44,11 @@ function handleClientCreate() {
   fetchClients()
 }
 
+function handleClientDelete(clientId: string) {
+  // 从列表中移除已删除的客户端
+  clients.value = clients.value.filter(client => client.id !== clientId)
+}
+
 onMounted(() => {
   fetchClients()
 })
@@ -67,7 +72,13 @@ onMounted(() => {
         No clients found
       </div>
       <div v-else class="flex flex-col w-full gap-y-3">
-        <ClientItem v-for="client in clients" :id="client.id" :key="client.id" :name="client.name" />
+        <ClientItem
+          v-for="client in clients"
+          :id="client.id"
+          :key="client.id"
+          :name="client.name"
+          @delete="handleClientDelete"
+        />
       </div>
     </div>
   </div>
