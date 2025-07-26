@@ -4,14 +4,26 @@
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@10.4.0",
+  "bin": {
+    "llamakit": "./packages/client/dist/index.js"
+  },
   "scripts": {
-    "build": "pnpm --filter=client build",
-    "dev": "nr -r dev",
+    "build": "pnpm -r build",
+    "dev": "pnpm -r --parallel dev",
     "lint": "eslint --cache .",
     "prepublishOnly": "nr build",
     "release": "bumpp -r && pnpm -r publish",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "clerc": "^0.44.0",
+    "listhen": "^1.9.0",
+    "nitropack": "^2.12.4",
+    "tailwindcss": "^4.1.11",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
@@ -27,17 +39,5 @@
     "unbuild": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.1.11",
-    "@vitejs/plugin-vue": "^6.0.0",
-    "clerc": "^0.44.0",
-    "listhen": "^1.9.0",
-    "nitropack": "^2.12.4",
-    "tailwindcss": "^4.1.11",
-    "vue-router": "^4.5.1"
-  },
-  "bin": {
-    "llamakit": "./client/index.js"
   }
 }
