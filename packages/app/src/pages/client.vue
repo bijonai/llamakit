@@ -38,22 +38,8 @@ const isLogOpen = ref(false)
         <ArrowButton direction="down" />
       </div>
       <div class="flex flex-col w-full gap-y-3">
-        <LogItem status="pending" @click="isLogOpen = true" />
-        <LogItem status="complete" />
-        <LogItem status="running" />
-        <LogItem status="error" />
-        <LogItem status="timeout" />
-        <SystemMessage role="system" content="You are a helpful assistant." />
-        <UserMessage role="user" content="Hello, how are you?" />
-        <AssistantMessage role="assistant" content="I'm good, thank you!" :tool-choices="[{
-          id: '1',
-          type: 'function',
-          function: {
-            name: 'get_weather',
-            arguments: JSON.stringify({ city: 'New York' })
-          }
-        }]" />
-        <ToolMessage role="tool" content="The weather in New York is sunny." tool-call-id="1" />
+        <LogItem status="complete" :created-at="new Date().toISOString()" :responsed-at="new Date().toISOString()"
+          :total-size="10" :message-count="10" @click="isLogOpen = true" />
       </div>
     </div>
     <div :class="[

@@ -1,9 +1,14 @@
 <script setup lang="ts">
+import MessageInfo from './message/MessageInfo.vue';
 import StatusTag from './StatusTag.vue';
 
 const props = defineProps<{
   // id: string
   status: 'pending' | 'complete' | 'running' | 'error' | 'timeout'
+  createdAt: string
+  responsedAt?: string
+  totalSize: number
+  messageCount: number
 }>()
 </script>
 
@@ -11,7 +16,10 @@ const props = defineProps<{
   <div class="box p-5">
     <div class="w-full h-full flex flex-col">
       <div class="w-full flex flex-row items-center">
-        <div class="flex">test</div>
+        <div class="flex flex-col">
+          <MessageInfo :created-at="props.createdAt" :responsed-at="props.responsedAt" :total-size="props.totalSize"
+            :message-count="props.messageCount" />
+        </div>
         <div class="flex ml-auto items-start h-full">
           <StatusTag :status="props.status" />
         </div>
