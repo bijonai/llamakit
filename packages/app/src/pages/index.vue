@@ -50,28 +50,25 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="isNewClientFormOpen" class="absolute top-0 left-0 size-full bg-black/50">
-    <NewClientForm @close="isNewClientFormOpen = false" @create="handleClientCreate" />
-  </div>
-  <div class="flex flex-col gap-y-3">
-    <div class="flex flex-row w-full gap-x-3">
-      <SearchBar placeholder="Filter clients" />
-      <SearchButton />
-      <AddButton @click="isNewClientFormOpen = true" />
+  <div class="size-full px-80 py-10">
+    <div v-if="isNewClientFormOpen" class="absolute top-0 left-0 size-full bg-black/50">
+      <NewClientForm @close="isNewClientFormOpen = false" @create="handleClientCreate" />
     </div>
-    <div v-if="isLoading" class="text-white text-center">
-      Loading clients...
-    </div>
-    <div v-else-if="clients.length === 0" class="text-white text-center">
-      No clients found
-    </div>
-    <div v-else class="flex flex-col w-full gap-y-3">
-      <ClientItem
-        v-for="client in clients"
-        :id="client.id"
-        :key="client.id"
-        :name="client.name"
-      />
+    <div class="flex flex-col gap-y-3">
+      <div class="flex flex-row w-full gap-x-3">
+        <SearchBar placeholder="Filter clients" />
+        <SearchButton />
+        <AddButton @click="isNewClientFormOpen = true" />
+      </div>
+      <div v-if="isLoading" class="text-white text-center">
+        Loading clients...
+      </div>
+      <div v-else-if="clients.length === 0" class="text-white text-center">
+        No clients found
+      </div>
+      <div v-else class="flex flex-col w-full gap-y-3">
+        <ClientItem v-for="client in clients" :id="client.id" :key="client.id" :name="client.name" />
+      </div>
     </div>
   </div>
 </template>

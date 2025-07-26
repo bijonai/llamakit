@@ -51,4 +51,12 @@ const props = defineProps<{
   font-style: normal;
   line-height: normal;
 }
+
+.container-primary:hover {
+  background: #21212180;
+}
+
+.container-success:hover {
+  background: #2C705180;
+}
 </style>

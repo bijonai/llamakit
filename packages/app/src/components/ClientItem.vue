@@ -31,4 +31,8 @@ const props = defineProps<{
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   height: 150px;
 }
+
+.container:hover {
+  background: #21212180;
+}
 </style>

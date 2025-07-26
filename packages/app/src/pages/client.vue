@@ -14,7 +14,7 @@ const clientName = route.query.name
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-3">
+  <div class="flex flex-col gap-y-3 px-80 py-10">
     <div class="flex flex-row gap-x-3 items-center">
       <ArrowButton direction="left" @click="router.push('/')" />
       <span class="text-white text-2xl font-bold">{{ clientName }}</span>
