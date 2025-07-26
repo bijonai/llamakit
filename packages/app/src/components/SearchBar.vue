@@ -15,12 +15,12 @@ const model = defineModel<string>('modelValue')
 <style scoped>
 .container {
   border-radius: 50px;
-  border: 1px solid #454545;
+  border: 2px solid #454545;
   background: #161618;
   height: 45px;
 }
 
 .container:focus {
-  border: 1px solid #454545;
+  border: 2px solid #454545;
 }
 </style>

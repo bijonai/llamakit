@@ -17,7 +17,7 @@ const props = defineProps<{
 <style scoped>
 .container-primary {
   border-radius: 12.5px;
-  border: 1px solid #454545;
+  border: 2px solid #454545;
   background: #212121;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   height: 45px;
@@ -25,7 +25,7 @@ const props = defineProps<{
 
 .container-success {
   border-radius: 12.5px;
-  border: 1px solid #3ECF8E;
+  border: 2px solid #3ECF8E;
   background: #2C7051;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   height: 45px;

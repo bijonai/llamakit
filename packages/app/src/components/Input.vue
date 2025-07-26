@@ -17,7 +17,7 @@ const model = defineModel<string>('modelValue')
 <style scoped>
 .container {
   border-radius: 12.5px;
-  border: 1px solid #454545;
+  border: 2px solid #454545;
   background: #212121;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   height: 45px

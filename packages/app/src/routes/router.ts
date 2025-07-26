@@ -6,6 +6,10 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('../pages/index.vue')
+    },
+    {
+      path: '/client/:id',
+      component: () => import('../pages/client.vue')
     }
   ],
 })
