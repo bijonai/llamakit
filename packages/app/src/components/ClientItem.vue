@@ -38,22 +38,13 @@ async function handleDelete(event: Event) {
 
 <template>
   <div class="container p-5" @click="router.push(`/client/${props.id}?name=${props.name}`)">
-    <div class="w-full h-full flex flex-col">
+    <div class="w-full h-full flex flex-col relative">
       <div class="w-full flex flex-row items-center">
         <div class="text-white font-bold">
           {{ props.name }}
         </div>
-        <div class="ml-auto flex items-center gap-2">
-          <button
-            class="delete-btn text-red-400 hover:text-red-300 text-sm px-2 py-1 rounded border border-red-400 hover:border-red-300 transition-colors"
-            title="Delete client"
-            @click="handleDelete"
-          >
-            Delete
-          </button>
-          <div class="text-xs text-gray-500">
-            {{ props.id }}
-          </div>
+        <div class="ml-auto text-xs text-gray-500">
+          {{ props.id }}
         </div>
       </div>
       <div class="w-full flex flex-row items-center">
@@ -61,6 +52,14 @@ async function handleDelete(event: Event) {
           No description
         </div>
       </div>
+      <button
+        class="delete-btn text-red-400 hover:text-red-300 text-sm px-2 py-1 hover:border-red-300 transition-colors absolute bottom-0 right-0"
+        style="border-radius: 5px; border: 2px solid #f87171; font-weight: bold;"
+        title="Delete client"
+        @click="handleDelete"
+      >
+        Delete
+      </button>
     </div>
   </div>
 </template>
