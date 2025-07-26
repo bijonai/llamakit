@@ -41,6 +41,29 @@ async function handleCreate() {
       throw new Error(error.statusMessage || 'Failed to create client')
     }
 
+    // 喵
+    // 请求base url
+    const API_BASE = 'http://localhost:3000'
+    try {
+      const response1 = await fetch(`${API_BASE}/api/request`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          url: 'https://jsonplaceholder.typicode.com/posts/1',
+        }),
+      })
+
+      const result1 = await response1.json()
+      console.log(`状态码: ${result1.response.status}`)
+      console.log(`耗时: ${result1.summary.duration}ms`)
+      console.log(`响应大小: ${result1.summary.responseSize} bytes\n`)
+    }
+    catch (error) {
+      console.log('❌ GET请求失败:', error.message, '\n')
+    }
+
     await response.json()
     emit('create', { name: name.value, apiKey: apiKey.value, baseUrl: baseUrl.value })
   }
