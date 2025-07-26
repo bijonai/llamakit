@@ -14,6 +14,7 @@ export type ChatLog = ({
 } | (({
   status: LogStatus.SUCCESS
   outputs: ChatMessage[]
+  outputSize: number // Unit: KB
   usage: Usage
 } | {
   status: LogStatus.ERROR
@@ -23,6 +24,7 @@ export type ChatLog = ({
   timeUsage: number
 })) & {
   inputs: ChatMessage[]
+  inputSize: number // Unit: KB
 }
 
 export function createChatTransformer(options: TransformerOptions) {
@@ -35,16 +37,19 @@ export function createChatTransformer(options: TransformerOptions) {
         status: LogStatus.PENDING,
         startAt: params.timestamp,
         inputs: req.messages,
+        inputSize: JSON.stringify(req).length / 1024,
       }
     },
     (res, o, params: object) => {
       const timestamp = (params as { timestamp: Date }).timestamp
+      const outputs = res.choices?.map(choice => choice.message) || []
       return {
         ...o,
         status: LogStatus.SUCCESS,
         lastAt: timestamp,
         timeUsage: o.status === LogStatus.RUNNING || o.status === LogStatus.PENDING ? timestamp.getTime() - o.startAt.getTime() : 0,
-        outputs: res.choices?.map(choice => choice.message) || [],
+        outputs,
+        outputSize: JSON.stringify(outputs).length / 1024,
         usage: res.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
       }
     },

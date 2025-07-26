@@ -20,7 +20,7 @@ export interface ChatUserMessage {
 export interface ChatAssistantMessage {
   role: 'assistant'
   content: string
-  tool_choices: ToolCall[]
+  tool_choices?: ToolCall[]
 }
 
 export interface ChatToolMessage {
@@ -30,7 +30,7 @@ export interface ChatToolMessage {
 }
 
 export type ChatMessage = (ChatSystemMessage | ChatUserMessage | ChatAssistantMessage | ChatToolMessage) & {
-  id: string
+  id?: string
 }
 
 export interface Tool {

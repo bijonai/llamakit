@@ -111,6 +111,9 @@ importers:
 
   packages/app:
     dependencies:
+      '@llamakit/core':
+        specifier: workspace:^
+        version: link:../core
       shiki:
         specifier: ^3.8.1
         version: 3.8.1

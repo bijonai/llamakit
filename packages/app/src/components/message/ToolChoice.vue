@@ -22,7 +22,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="container p-5">
+  <div class="box p-5">
     <div class="w-full flex flex-col gap-y-2">
       <div class="flex flex-row text-white text-sm gap-2">
         <div class="text-gray-500">
@@ -53,7 +53,7 @@ const props = defineProps<{
 </template>
 
 <style scoped>
-.container {
+.box {
   border-radius: 25px;
   border: 2px solid #454545;
   background: #161618;

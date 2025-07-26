@@ -46,8 +46,8 @@ const props = withDefaults(defineProps<{
 <style scoped>
 .container {
   border-radius: 25px;
-  border: 2x solid #454545;
-  background: #212121;
+  /* border: 2x solid #e8050520; */
+  background: #161618;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   min-height: 150px;
 }
