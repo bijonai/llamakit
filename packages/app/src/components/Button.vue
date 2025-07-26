@@ -1,6 +1,13 @@
+<script setup lang="ts">
+const props = defineProps<{
+  color: 'primary' | 'success'
+  disabled?: boolean
+}>()
+</script>
+
 <template>
   <div class="w-full">
-    <button class="container" :class="`container-${props.color}`">
+    <button class="container" :class="`container-${props.color}`" :disabled="props.disabled">
       <span class="text">
         <slot />
       </span>
@@ -8,13 +15,18 @@
   </div>
 </template>
 
-<script setup lang="ts">
-const props = defineProps<{
-  color: 'primary' | 'success'
-}>()
-</script>
-
 <style scoped>
+.container {
+  width: 100%;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.container:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .container-primary {
   border-radius: 12.5px;
   border: 2px solid #454545;
