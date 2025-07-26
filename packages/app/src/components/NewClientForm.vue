@@ -12,10 +12,12 @@ const name = ref('')
 const apiKey = ref('')
 const baseUrl = ref('')
 const isLoading = ref(false)
+const errorMessage = ref('')
 
 async function handleCreate() {
   if (!name.value || !apiKey.value || !baseUrl.value) {
-    console.error('请填写所有字段')
+    errorMessage.value = 'Please fill in all fields'
+    console.error('Please fill in all fields')
     return
   }
 
@@ -43,6 +45,7 @@ async function handleCreate() {
     emit('create', { name: name.value, apiKey: apiKey.value, baseUrl: baseUrl.value })
   }
   catch (error) {
+    errorMessage.value = `Error creating client: ${error}`
     console.error('Error creating client:', error)
   }
   finally {
