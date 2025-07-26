@@ -9,4 +9,12 @@ export default defineConfig({
   define: {
     'import.meta.env.CLIENT_URL': 'http://localhost:6320',
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
+  },
 })

@@ -1,25 +1,76 @@
 <script setup lang="ts">
-import Input from './Input.vue';
-import Button from './Button.vue';
-import { defineEmits } from 'vue';
+import { defineEmits, ref } from 'vue'
+import Button from './Button.vue'
+import Input from './Input.vue'
 
 const emit = defineEmits<{
   (e: 'close'): void
-  (e: 'create'): void
+  (e: 'create', data: { name: string, apiKey: string, baseUrl: string }): void
 }>()
+
+const name = ref('')
+const apiKey = ref('')
+const baseUrl = ref('')
+const isLoading = ref(false)
+const errorMessage = ref('')
+
+async function handleCreate() {
+  if (!name.value || !apiKey.value || !baseUrl.value) {
+    errorMessage.value = 'Please fill in all fields'
+    console.error('Please fill in all fields')
+    return
+  }
+
+  isLoading.value = true
+
+  try {
+    const response = await fetch('/api/client/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name.value,
+        apiKey: apiKey.value,
+        baseUrl: baseUrl.value,
+      }),
+    })
+
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.statusMessage || 'Failed to create client')
+    }
+
+    await response.json()
+    emit('create', { name: name.value, apiKey: apiKey.value, baseUrl: baseUrl.value })
+  }
+  catch (error) {
+    errorMessage.value = `Error creating client: ${error}`
+    console.error('Error creating client:', error)
+  }
+  finally {
+    isLoading.value = false
+  }
+}
 </script>
 
 <template>
   <div class="size-full flex justify-center items-center">
     <div class="container p-5">
-      <h1 class="title py-5">New Client</h1>
+      <h1 class="title py-5">
+        New Client
+      </h1>
       <div class="w-full flex flex-col items-center gap-y-2">
-        <Input placeholder="Name" />
-        <Input placeholder="API Key" />
-        <Input placeholder="Base URL" />
+        <Input v-model="name" placeholder="Name" />
+        <Input v-model="apiKey" placeholder="API Key" />
+        <Input v-model="baseUrl" placeholder="Base URL" />
         <div class="flex w-full flex-row gap-x-2">
-          <Button color="primary" @click="emit('close')">Cancel</Button>
-          <Button color="success" @click="emit('create')">Create</Button>
+          <Button color="primary" :disabled="isLoading" @click="emit('close')">
+            Cancel
+          </Button>
+          <Button color="success" :disabled="isLoading" @click="handleCreate">
+            {{ isLoading ? 'Creating...' : 'Create' }}
+          </Button>
         </div>
       </div>
     </div>
