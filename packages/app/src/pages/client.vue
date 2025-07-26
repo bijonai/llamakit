@@ -5,6 +5,10 @@ import ArrowButton from '../components/ArrowButton.vue';
 import LogItem from '../components/LogItem.vue';
 
 import { useRoute, useRouter } from 'vue-router';
+import SystemMessage from '../components/message/SystemMessage.vue';
+import UserMessage from '../components/message/UserMessage.vue';
+import AssistantMessage from '../components/message/AssistantMessage.vue';
+import ToolMessage from '../components/message/ToolMessage.vue';
 
 const route = useRoute()
 const router = useRouter()
@@ -30,6 +34,17 @@ const clientName = route.query.name
       <LogItem status="running" />
       <LogItem status="error" />
       <LogItem status="timeout" />
+      <SystemMessage role="system" content="You are a helpful assistant." />
+      <UserMessage role="user" content="Hello, how are you?" />
+      <AssistantMessage role="assistant" content="I'm good, thank you!" :tool-choices="[{
+        id: '1',
+        type: 'function',
+        function: {
+          name: 'get_weather',
+          arguments: JSON.stringify({ city: 'New York' })
+        }
+      }]" />
+      <ToolMessage role="tool" content="The weather in New York is sunny." tool-call-id="1" />
     </div>
   </div>
 </template>

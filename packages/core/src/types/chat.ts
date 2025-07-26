@@ -20,12 +20,13 @@ export interface ChatUserMessage {
 export interface ChatAssistantMessage {
   role: 'assistant'
   content: string
+  tool_choices: ToolCall[]
 }
 
 export interface ChatToolMessage {
   role: 'tool'
   content: string
-  tool_calls: ToolCall[]
+  tool_call_id: string
 }
 
 export type ChatMessage = (ChatSystemMessage | ChatUserMessage | ChatAssistantMessage | ChatToolMessage) & {
