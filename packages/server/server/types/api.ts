@@ -93,3 +93,60 @@ export interface ClearLogsResponse {
   message: string
   clearedCount: number
 }
+
+// HTTP请求工具相关类型
+export interface HttpRequestBody {
+  url: string
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS'
+  headers?: Record<string, string>
+  queryParams?: Record<string, any>
+  bodyData?: any
+  timeout?: number
+}
+
+export interface HttpRequestInfo {
+  url: string
+  originalUrl: string
+  method: string
+  headers: Record<string, string>
+  queryParams: Record<string, any>
+  body: any
+  timestamp: string
+  initiator: {
+    userAgent: string
+    clientIp: string
+    referer: string
+  }
+}
+
+export interface HttpResponseInfo {
+  status: number
+  statusText: string
+  headers: Record<string, string>
+  body: any
+  size: number
+  duration: number
+  timestamp: string
+  error?: string
+  cache: {
+    cacheControl?: string
+    etag?: string
+    lastModified?: string
+  }
+  redirect: {
+    redirected: boolean
+    finalUrl?: string
+  }
+}
+
+export interface HttpRequestResponse {
+  request: HttpRequestInfo
+  response: HttpResponseInfo
+  summary: {
+    success: boolean
+    duration: number
+    statusCode: number
+    responseSize: number
+    error?: string
+  }
+}
